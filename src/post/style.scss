@@ -1,0 +1,36 @@
+.post {
+  display: flex;
+  background-color: #15202b;
+  width: 400px;
+  color : #f7f9f9;
+  padding : 16px;
+  text-align: left;
+  font-size: 15px;
+
+  &__avatar img{
+    border-radius: 50%;
+    border: 2px solid #f85c5c;
+    width: 48px;
+    height: 48px;
+    margin-right: 12px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    &_info {
+      display: flex;
+      &-nickname {
+        color :#8b98a5;
+        padding-left : 2px;
+      }
+    }
+    &_body {
+      &-message {
+        display: flex;
+        margin-top : 6px;
+      }
+    }
+  }
+
+}
