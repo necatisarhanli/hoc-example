@@ -1,36 +1,40 @@
 import "./styles.css";
-import Post from "./post";
 import { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 import { PostData } from "./post/type";
-
+import List from './list'
 export default function App() {
-  const [postData, setPostData] = useState<PostData>();
-  const [loading, setLoading] = useState<Boolean>(false);
+  const [postList, setPostList] = useState<Array<PostData>>();
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const fakeFetchAPI = () =>
-    new Promise<PostData>((resolve, reject) => {
+  const fakeFetchAPI = ():Promise<Array<PostData>> =>{
+    setLoading(true);
+    return new Promise<Array<PostData>>((resolve) => {
       setTimeout(() => {
-        resolve({
+        resolve([1,2,3,4,5].map((item)=>{
+            return {
           avatarSrc: faker.internet.avatar(),
           name: faker.name.firstName(),
           surname: faker.name.lastName(),
           message: faker.lorem.sentences(3),
           nickname: faker.internet.userName()
-        });
+        }
+        }));
       }, 2000); // 2sec
-    });
+    })};
+    
+    
   useEffect(() => {
-    setLoading(true);
     fakeFetchAPI().then((res) => {
+      setPostList(res);
+    }).finally(()=>{
       setLoading(false);
-      setPostData(res);
     });
   }, []);
 
   return (
     <div className="App">
-      {loading ? <div>loading...</div> : <Post data={postData} />}
+        <List data={postList} loading={loading}/>
     </div>
   );
 }

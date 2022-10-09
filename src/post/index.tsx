@@ -1,4 +1,4 @@
-import "./style.scss";
+import "./style.css";
 import { PostProps } from "./type";
 
 const Post = ({ data }: PostProps): JSX.Element => {
