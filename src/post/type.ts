@@ -10,4 +10,4 @@ interface PostData {
   nickname: string;
 }
 
-export { PostData, PostProps };
+export type { PostData, PostProps };
